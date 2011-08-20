@@ -14,6 +14,8 @@
   };
   Backbone.couch_connector = con = {
     config: {
+// range of db_type = ["couch", "pouch"]
+      db_type = "couch",
       db_name: "backbone_connect",
       ddoc_name: "backbone_example",
       view_name: "byCollection",
@@ -58,6 +60,7 @@
         return con.read_model(model, opts);
       }
     },
+    
     read_collection: function(coll, opts) {
       var keys, _opts, _view;
       _view = this.config.view_name;
@@ -95,6 +98,7 @@
       }
       return this.helpers.make_db().view("" + this.config.ddoc_name + "/" + _view, _opts);
     },
+    
     read_model: function(model, opts) {
       if (!model.id) {
         throw new Error("The model has no id property, so it can't get fetched from the database");
